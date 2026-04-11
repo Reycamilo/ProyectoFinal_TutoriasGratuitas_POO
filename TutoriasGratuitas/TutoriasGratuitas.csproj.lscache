@@ -23,7 +23,7 @@ ProjectAssetsFile=<PATH>obj/project.assets.json
 RootNamespace=TutoriasGratuitas
 RunAnalyzers=
 RunAnalyzersDuringLiveAnalysis=
-SolutionPath=*Undefined*
+SolutionPath=<PATH>TutoriasGratuitas.sln
 TargetFrameworkIdentifier=.NETCoreApp
 TargetPath=<PATH>bin/Debug/net10.0/TutoriasGratuitas.dll
 TargetRefPath=<PATH>obj/Debug/net10.0/ref/TutoriasGratuitas.dll
@@ -57,6 +57,24 @@ TemporaryDependencyNodeTargetIdentifier=net10.0
 /warnaserror+:NU1605,SYSLIB0011
 
 [sourceFiles]
+Constants/
+ HttpMessageResponse.cs
+ HttpStatusCode.cs
+Dtos/
+ Comun/ReponseDto.cs
+ Materias/
+  MateriaActionResponseDto.cs
+  MateriaCreatDto.cs
+  MateriaDto.cs
+  MateriaEditDto.cs
+ Tutores/
+  TutorActionResponseDto.cs
+  TutorCreatDto.cs
+  TutorDto.cs
+  TutorEditDto.cs
+Entidades/
+ MateriaEntity.cs
+ TutorEntity.cs
 obj/Debug/net10.0/
  .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
  TutoriasGratuitas.AssemblyInfo.cs
