@@ -57,24 +57,19 @@ TemporaryDependencyNodeTargetIdentifier=net10.0
 /warnaserror+:NU1605,SYSLIB0011
 
 [sourceFiles]
-Constants/
- HttpMessageResponse.cs
- HttpStatusCode.cs
+BaseDeDatos/AppDbContext.cs
 Dtos/
- Comun/ReponseDto.cs
- Materias/
-  MateriaActionResponseDto.cs
-  MateriaCreatDto.cs
-  MateriaDto.cs
-  MateriaEditDto.cs
- Tutores/
-  TutorActionResponseDto.cs
-  TutorCreatDto.cs
-  TutorDto.cs
-  TutorEditDto.cs
+ Materias/MateriaDto.cs
+ Tutores/TutorDto.cs
 Entidades/
  MateriaEntity.cs
  TutorEntity.cs
+Migrations/
+ 20260411154510_MigracionIncial.cs
+ 20260411154510_MigracionIncial.Designer.cs
+ 20260411155010_CorrigiendoNombreDeTutores.cs
+ 20260411155010_CorrigiendoNombreDeTutores.Designer.cs
+ AppDbContextModelSnapshot.cs
 obj/Debug/net10.0/
  .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
  TutoriasGratuitas.AssemblyInfo.cs
