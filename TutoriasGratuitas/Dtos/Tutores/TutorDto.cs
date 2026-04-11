@@ -1,8 +1,7 @@
-namespace TutoriasGratuitas.Entidades
+namespace TutoriasGratuitas.Dtos.Tutores
 {
-    public class TutorEntity
+    public class TutorDto
     {
-        public string Id { get; set; }
         public string Dni { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }

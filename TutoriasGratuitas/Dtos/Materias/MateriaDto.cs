@@ -1,12 +1,10 @@
-namespace TutoriasGratuitas.Entidades
+namespace TutoriasGratuitas.Dtos.Materias
 {
-    public class MateriaEntity
+    public class MateriaDto
     {
-        public string Id { get; set; }
         public string Codigo { get; set; }
         public string Nombre { get; set; }
         public string Area { get; set; }
         public int Creditos { get; set; }
-        
     }
 }
