@@ -9,5 +9,7 @@ namespace TutoriasGratuitas.Entidades
         public  DateTime FechaDeNacimiento { get; set; }
         public string CorreoElectronico { get; set; }
         public string Genero { get; set; }
+        public string MateriaId { get; set; }
+        public virtual MateriaEntity Materia { get; set; }
     }
 }
