@@ -476,7 +476,9 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-appsettings.Development.json
-appsettings.json
+#appsettings.Development.json
+#appsettings.json
+
+*.lscache
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,csharp,windows,linux,database
