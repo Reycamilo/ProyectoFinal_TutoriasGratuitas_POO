@@ -32,7 +32,7 @@ docs: |-
   ### Descripción
   Recupera la lista completa de materias almacenadas en la base de datos.
 
-  Es útil para mostrar las materias disponibles en una tabla, listado o selector dentro de la aplicación.
+  La respuesta utiliza un DTO de salida para mostrar únicamente la información necesaria de cada materia. En lugar de devolver todos los datos de los tutores relacionados, solo devuelve una lista con los nombres de los tutores asociados a cada materia.
 
   ### Cuerpo de la petición
   Este endpoint no requiere cuerpo en la solicitud.
@@ -47,15 +47,16 @@ docs: |-
   ```json
   [
     {
-      "id": "1a2b3c4d",
       "codigo": "MAT101",
       "nombre": "Matematica Basica",
       "area": "Ciencias",
       "creditos": 4,
-      "tutores": []
+      "tutores": [
+        "Juan",
+        "Maria"
+      ]
     },
     {
-      "id": "5e6f7g8h",
       "codigo": "ESP201",
       "nombre": "Espanol General",
       "area": "Humanidades",
@@ -66,12 +67,11 @@ docs: |-
   ```
 
   ### Campos de la respuesta
-  - `id`: identificador único de la materia.
   - `codigo`: código de la materia.
   - `nombre`: nombre de la materia.
   - `area`: área académica de la materia.
   - `creditos`: cantidad de créditos.
-  - `tutores`: lista de tutores asociados a esa materia.
+  - `tutores`: lista con los nombres de los tutores asignados a esa materia.
 
   ### Resumen
-  Este endpoint se utiliza para obtener todas las materias registradas en el sistema y mostrarlas en la aplicación cuando sea necesario.
+  Este endpoint se utiliza para obtener todas las materias registradas en el sistema, mostrando también los nombres de los tutores asociados a cada una.

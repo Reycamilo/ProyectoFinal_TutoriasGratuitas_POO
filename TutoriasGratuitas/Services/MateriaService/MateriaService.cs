@@ -15,9 +15,29 @@ namespace TutoriasGratuitas.Services.MateriaService
             _context = context;
         }
 
-        public async Task<List<MateriaEntity>> GetAllMaterias()
+        public async Task<List<MateriaResponseDto>> GetAllMaterias()
         {
-            return await _context.Materias.ToListAsync();
+            List<MateriaEntity> materias = await _context.Materias
+                .Include(m => m.Tutores)
+                .ToListAsync();
+
+            return materias
+                .Select(m => m.ToMateriaResponseDto())
+                .ToList();
+        }
+
+        public async Task<MateriaResponseDto> GetMateriaById(string id)
+        {
+            MateriaEntity materia = await _context.Materias
+                .Include(m => m.Tutores)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (materia is null)
+            {
+                throw new InvalidOperationException("No existe una materia con ese Id.");
+            }
+
+            return materia.ToMateriaResponseDto();
         }
 
         public async Task CreateMateria(MateriaDto dto)

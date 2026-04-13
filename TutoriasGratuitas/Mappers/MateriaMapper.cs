@@ -16,5 +16,19 @@ namespace TutoriasGratuitas.Mappers
                 Creditos = dto.Creditos,
             };
         }
+
+        public static MateriaResponseDto ToMateriaResponseDto(this MateriaEntity entity)
+        {
+            return new MateriaResponseDto
+            {
+                Codigo = entity.Codigo,
+                Nombre = entity.Nombre,
+                Area = entity.Area,
+                Creditos = entity.Creditos,
+                Tutores = entity.Tutores?
+                    .Select(p => p.Nombre)
+                    .ToList() ?? new List<string>()
+            };
+        }
     }
 }

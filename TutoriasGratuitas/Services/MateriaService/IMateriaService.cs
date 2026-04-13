@@ -5,7 +5,8 @@ namespace TutoriasGratuitas.Services.MateriaService
 {
     public interface IMateriaService
     {
-        Task<List<MateriaEntity>> GetAllMaterias();
+        Task<List<MateriaResponseDto>> GetAllMaterias();
+        Task<MateriaResponseDto> GetMateriaById(string id);
         Task CreateMateria(MateriaDto dto);
     }
 }
