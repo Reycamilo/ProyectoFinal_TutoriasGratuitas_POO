@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TutoriasGratuitas.BaseDeDatos;
+using TutoriasGratuitas.Services.TutorService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddDbContext<AppDbContext>(options => 
 options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddTransient<ITutorService, TutorService>();
+
+
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -19,8 +25,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 
-
-
+app.MapControllers();
 
 app.Run();
 
