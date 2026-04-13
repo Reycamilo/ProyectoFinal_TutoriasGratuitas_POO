@@ -17,10 +17,24 @@ namespace TutoriasGratuitas.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<TutorEntity>>> GetAllTutores()
+        public async Task<ActionResult<List<TutorResponseDto>>> GetAllTutores()
         {
             var tutores = await _tutorService.GetAllTutores();
             return Ok(tutores);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<TutorResponseDto>> GetTutorById(string id)
+        {
+            try
+            {
+                var tutor = await _tutorService.GetTutorById(id);
+                return Ok(tutor);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpPost("{codigoMateria}")]

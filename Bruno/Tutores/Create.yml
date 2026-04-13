@@ -5,7 +5,7 @@ info:
 
 http:
   method: POST
-  url: "{{Local_Path}}/api/tutor/MM-110"
+  url: "{{Local_Path}}/api/tutor/F100"
   body:
     type: json
     data: |-

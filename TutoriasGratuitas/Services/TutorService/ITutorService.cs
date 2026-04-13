@@ -5,7 +5,8 @@ namespace TutoriasGratuitas.Services.TutorService
 {
     public interface ITutorService
     {
-        Task<List<TutorEntity>> GetAllTutores();
+        Task<List<TutorResponseDto>> GetAllTutores();
+        Task<TutorResponseDto> GetTutorById(string id);
         Task CreateTutor(TutorDto dto, string codigoMateria);
     }
 }

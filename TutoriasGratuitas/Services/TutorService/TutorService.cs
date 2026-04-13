@@ -13,9 +13,29 @@ namespace TutoriasGratuitas.Services.TutorService
         {
             _context = context;
         }
-        public async Task<List<TutorEntity>> GetAllTutores()
+        public async Task<List<TutorResponseDto>> GetAllTutores()
         {
-            return await _context.Tutores.ToListAsync();
+            List<TutorEntity> tutores = await _context.Tutores
+                .Include(t => t.Materia)
+                .ToListAsync();
+
+            return tutores
+                .Select(t => t.ToTutorResponseDto())
+                .ToList();
+        }
+
+        public async Task<TutorResponseDto> GetTutorById(string id)
+        {
+            TutorEntity tutor = await _context.Tutores
+                .Include(t => t.Materia)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (tutor is null)
+            {
+                throw new InvalidOperationException("No existe un tutor con ese Id.");
+            }
+
+            return tutor.ToTutorResponseDto();
         }
 
         public async Task CreateTutor(TutorDto dto, string codigoMateria)
