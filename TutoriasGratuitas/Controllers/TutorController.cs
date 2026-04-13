@@ -23,7 +23,7 @@ namespace TutoriasGratuitas.Controllers
             return Ok(tutores);
         }
 
-        [HttpPut("{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<TutorResponseDto>> GetTutorById(string id)
         {
             try

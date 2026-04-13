@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using TutoriasGratuitas.Dtos.Materias;
-using TutoriasGratuitas.Entidades;
 using TutoriasGratuitas.Services.MateriaService;
 
 namespace TutoriasGratuitas.Controllers
@@ -17,10 +16,24 @@ namespace TutoriasGratuitas.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<MateriaEntity>>> GetAllMaterias()
+        public async Task<ActionResult<List<MateriaResponseDto>>> GetAllMaterias()
         {
             var materias = await _materiaService.GetAllMaterias();
             return Ok(materias);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<MateriaResponseDto>> GetMateriaById(string id)
+        {
+            try
+            {
+                var materia = await _materiaService.GetMateriaById(id);
+                return Ok(materia);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpPost]
