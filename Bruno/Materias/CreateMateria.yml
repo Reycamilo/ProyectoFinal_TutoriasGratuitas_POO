@@ -10,9 +10,9 @@ http:
     type: json
     data: |-
       {
-        "Codigo": "F100",
-        "Nombre" : "Fisica 1",
-        "Area" : "Area de Ciencias",
+        "Codigo": "MM110",
+        "Nombre" : "Matematicas",
+        "Area" : "Area de Matematicas",
         "Creditos" : 5
       }
   auth: inherit

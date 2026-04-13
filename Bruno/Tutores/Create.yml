@@ -5,17 +5,18 @@ info:
 
 http:
   method: POST
-  url: "{{Local_Path}}/api/tutor/F100"
+  url: "{{Local_Path}}/api/tutor"
   body:
     type: json
     data: |-
       {
-        "Dni": "1234567891232",
-        "Nombre": "Kevin",
+        "Dni": "1234567891267",
+        "Nombre": "Camilo",
         "Apellido": "Maldonado",
         "FechaDeNacimiento": "2004-02-12",
         "CorreoElectronico": "salguero@gmail.com",
-        "Genero": "M"
+        "Genero": "M",
+        "CodigoMateria": "F100"
       }
   auth: inherit
 

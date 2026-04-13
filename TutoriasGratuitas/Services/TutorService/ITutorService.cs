@@ -7,6 +7,8 @@ namespace TutoriasGratuitas.Services.TutorService
     {
         Task<List<TutorResponseDto>> GetAllTutores();
         Task<TutorResponseDto> GetTutorById(string id);
-        Task CreateTutor(TutorDto dto, string codigoMateria);
+        Task CreateTutor(TutorDto dto);
+        Task UpdateTutor(string id, TutorDto dto);
+        Task DeleteTutor(string id);
     }
 }
