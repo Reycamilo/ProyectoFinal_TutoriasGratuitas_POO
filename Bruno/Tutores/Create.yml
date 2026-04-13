@@ -5,17 +5,17 @@ info:
 
 http:
   method: POST
-  url: "{{Local_Path}}/api/tutor"
+  url: "{{Local_Path}}/api/tutor/MM-110"
   body:
     type: json
     data: |-
       {
-        "Dni": "1234567891235",
-        "Nombre" : "Jossue",
-        "Apellido" : "Salguero",
-        "FechaDeNacimiento" : "2004-02-12",
-        "CorreoElectronico" : "salguero@gmail.com",
-        "Genero" : "M"
+        "Dni": "1234567891232",
+        "Nombre": "Kevin",
+        "Apellido": "Maldonado",
+        "FechaDeNacimiento": "2004-02-12",
+        "CorreoElectronico": "salguero@gmail.com",
+        "Genero": "M"
       }
   auth: inherit
 
@@ -29,3 +29,99 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+
+docs: |-
+  ## Endpoint: Crear un nuevo tutor
+
+  Este endpoint permite registrar un nuevo tutor en el sistema y asignarle una materia existente por medio del código de la clase enviado en la URL.
+
+  ### URL
+  ```http
+  POST /api/tutor/{codigoMateria}
+  ```
+
+  ### Descripción
+  Recibe los datos de un tutor en el cuerpo de la petición y el código de la materia en la URL.
+
+  Antes de crear el tutor, el sistema realiza dos validaciones:
+  - Verifica que exista una materia con el código recibido.
+  - Verifica que no exista otro tutor con el mismo DNI.
+
+  Si ambas validaciones se cumplen, el sistema crea el tutor y le asigna automáticamente el `MateriaId` correspondiente a la materia encontrada.
+
+  ### Parámetro en la URL
+  - `codigoMateria`: código de la materia que se desea asignar al tutor.
+
+  ### Cuerpo de la petición
+  Se debe enviar un objeto JSON con la siguiente estructura:
+
+  ```json
+  {
+    "dni": "0801199901234",
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "fechaDeNacimiento": "2000-05-15T00:00:00",
+    "correoElectronico": "juan.perez@email.com",
+    "genero": "Masculino"
+  }
+  ```
+
+  ### Campos
+  - `dni`: número de identidad del tutor.
+  - `nombre`: nombres del tutor.
+  - `apellido`: apellidos del tutor.
+  - `fechaDeNacimiento`: fecha de nacimiento del tutor.
+  - `correoElectronico`: correo electrónico del tutor.
+  - `genero`: género del tutor.
+
+  ### Ejemplo de solicitud
+  ```http
+  POST /api/tutor/MAT101
+  ```
+
+  ```json
+  {
+    "dni": "0801199901234",
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "fechaDeNacimiento": "2000-05-15T00:00:00",
+    "correoElectronico": "juan.perez@email.com",
+    "genero": "Masculino"
+  }
+  ```
+
+  ### Respuesta exitosa
+  Si el tutor se crea correctamente, el endpoint responde con:
+
+  ```http
+  200 OK
+  ```
+
+  ```json
+  "Tutor creado exitosamente."
+  ```
+
+  ### Respuesta cuando la materia no existe
+  Si el código de materia enviado no está registrado en la base de datos, el endpoint responde con:
+
+  ```http
+  409 Conflict
+  ```
+
+  ```json
+  "No existe una materia con ese codigo."
+  ```
+
+  ### Respuesta cuando ya existe un tutor con el mismo DNI
+  Si ya existe un tutor registrado con el mismo DNI, el endpoint responde con:
+
+  ```http
+  409 Conflict
+  ```
+
+  ```json
+  "Ya existe un tutor con ese dni."
+  ```
+
+  ### Resumen
+  Este endpoint se utiliza para registrar tutores nuevos en el sistema, asegurando que la materia asignada exista y que no se repita el DNI de otro tutor ya registrado.

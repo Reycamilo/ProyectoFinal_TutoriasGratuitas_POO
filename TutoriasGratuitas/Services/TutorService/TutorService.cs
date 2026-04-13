@@ -17,9 +17,26 @@ namespace TutoriasGratuitas.Services.TutorService
         {
             return await _context.Tutores.Include(t => t.Materia).ToListAsync();
         }
-        public async Task CreateTutor(TutorDto dto)
+
+        public async Task CreateTutor(TutorDto dto, string codigoMateria)
         {
-            TutorEntity tutorEntity = TutorMapper.ToTutorEntity(dto);
+            MateriaEntity materia = await _context.Materias
+                .FirstOrDefaultAsync(p => p.Codigo == codigoMateria);
+
+            if (materia is null)
+            {
+                throw new InvalidOperationException("No existe una materia con ese codigo.");
+            }
+
+            bool existeTutor = await _context.Tutores
+                .AnyAsync(t => t.Dni == dto.Dni);
+
+            if (existeTutor)
+            {
+                throw new InvalidOperationException("Ya existe un tutor con ese dni.");
+            }
+
+            TutorEntity tutorEntity = dto.ToTutorEntity(materia.Id);
 
             _context.Tutores.Add(tutorEntity);
             await _context.SaveChangesAsync();

@@ -5,7 +5,7 @@ namespace TutoriasGratuitas.Mappers
 {
     public static class TutorMapper
     {
-        public static TutorEntity ToTutorEntity(this TutorDto dto)
+        public static TutorEntity ToTutorEntity(this TutorDto dto, string materiaId)
         {
             return new TutorEntity
             {
@@ -16,6 +16,7 @@ namespace TutoriasGratuitas.Mappers
                 FechaDeNacimiento = dto.FechaDeNacimiento,
                 CorreoElectronico = dto.CorreoElectronico,
                 Genero = dto.Genero,
+                MateriaId = materiaId,
             };
         }
     }

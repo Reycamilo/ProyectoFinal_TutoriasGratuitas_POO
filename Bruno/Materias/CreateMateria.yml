@@ -10,8 +10,8 @@ http:
     type: json
     data: |-
       {
-        "Codigo": "FI-100",
-        "Nombre" : "Ciencias",
+        "Codigo": "F100",
+        "Nombre" : "Fisica 1",
         "Area" : "Area de Ciencias",
         "Creditos" : 5
       }
