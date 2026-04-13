@@ -38,10 +38,10 @@ namespace TutoriasGratuitas.Services.TutorService
             return tutor.ToTutorResponseDto();
         }
 
-        public async Task CreateTutor(TutorDto dto, string codigoMateria)
+        public async Task CreateTutor(TutorDto dto)
         {
             MateriaEntity materia = await _context.Materias
-                .FirstOrDefaultAsync(p => p.Codigo == codigoMateria);
+                .FirstOrDefaultAsync(p => p.Codigo == dto.CodigoMateria);
 
             if (materia is null)
             {
@@ -61,5 +61,62 @@ namespace TutoriasGratuitas.Services.TutorService
             _context.Tutores.Add(tutorEntity);
             await _context.SaveChangesAsync();
         }
+        
+        public async Task DeleteTutor(string id)
+        {
+            TutorEntity tutor = await _context.Tutores
+                .FirstOrDefaultAsync(t => t.Id == id);
+
+            if (tutor is null)
+            {
+                throw new InvalidOperationException("No existe un tutor con ese Id.");
+            }
+
+            _context.Tutores.Remove(tutor);
+            await _context.SaveChangesAsync();
+        }
+        public async Task UpdateTutor(string id, TutorDto dto)
+        {
+            TutorEntity tutor = await _context.Tutores
+                .FirstOrDefaultAsync(t => t.Id == id);
+
+            if (tutor is null)
+            {
+                throw new InvalidOperationException("No existe un tutor con ese Id.");
+            }
+
+            bool existeTutorConDni = await _context.Tutores
+                .AnyAsync(t => t.Dni == dto.Dni && t.Id != id);
+
+            if (existeTutorConDni)
+            {
+                throw new InvalidOperationException("Ya existe un tutor con ese dni.");
+            }
+
+            if (dto.CodigoMateria == null)
+            {
+                throw new ArgumentNullException(nameof(dto.CodigoMateria));
+            }
+            MateriaEntity materia = await _context.Materias
+                .FirstOrDefaultAsync(p => p.Codigo == dto.CodigoMateria);
+
+            if (materia is null)
+            {
+                throw new InvalidOperationException("No existe una materia con ese codigo.");
+            }
+
+            TutorEntity tutorActualizado = TutorMapper.ToTutorUpdateDto(tutor, dto, materia.Id);
+            // tutor.Nombre = dto.Nombre;
+            // tutor.Apellido = dto.Apellido;
+            // tutor.FechaDeNacimiento = dto.FechaDeNacimiento;
+            // tutor.CorreoElectronico = dto.CorreoElectronico;
+            // tutor.Genero = dto.Genero;
+            // tutor.MateriaId = materia.Id;
+            
+
+            await _context.SaveChangesAsync();
+        }
+
+
     }
 }

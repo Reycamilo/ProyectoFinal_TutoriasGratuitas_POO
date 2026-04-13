@@ -1,0 +1,27 @@
+info:
+  name: Update
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{Local_Path}}/api/tutor/545d3ae7-d11e-40df-810b-e2a6fd01d110"
+  body:
+    type: json
+    data: |-
+      {
+        "Dni": "1234567891299",
+        "Nombre": "Maria",
+        "Apellido": "Magdalena",
+        "FechaDeNacimiento": "2007-02-12",
+        "CorreoElectronico": "maria@gmail.com",
+        "Genero": "F",
+        "CodigoMateria": "F100"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

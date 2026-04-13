@@ -33,5 +33,17 @@ namespace TutoriasGratuitas.Mappers
                 Materia = entity.Materia?.Nombre
             };
         }
+        public static TutorEntity ToTutorUpdateDto(TutorEntity tutor, TutorDto dto, string materiaId)
+        {
+            
+                tutor.Nombre = dto.Nombre;
+            tutor.Apellido = dto.Apellido;
+            tutor.FechaDeNacimiento = dto.FechaDeNacimiento;
+            tutor.CorreoElectronico = dto.CorreoElectronico;
+            tutor.Genero = dto.Genero;
+            tutor.MateriaId = materiaId;
+            return tutor;
+            
+        }   
     }
 }

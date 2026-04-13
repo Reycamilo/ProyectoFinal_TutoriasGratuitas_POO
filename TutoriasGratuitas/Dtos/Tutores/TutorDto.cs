@@ -24,5 +24,6 @@ namespace TutoriasGratuitas.Dtos.Tutores
         [EmailAddress(ErrorMessage = "Formato de Correo Invalido.")]
         public string CorreoElectronico { get; set; }
         public string Genero { get; set; }
+        public string CodigoMateria { get; set; }
     }
 }

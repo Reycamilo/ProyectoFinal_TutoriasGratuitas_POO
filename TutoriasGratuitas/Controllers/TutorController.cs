@@ -37,12 +37,12 @@ namespace TutoriasGratuitas.Controllers
             }
         }
 
-        [HttpPost("{codigoMateria}")]
-        public async Task<ActionResult> CreateTutor(string codigoMateria, TutorDto dto)
+        [HttpPost]
+        public async Task<ActionResult> CreateTutor(TutorDto dto)
         {
             try
             {
-                await _tutorService.CreateTutor(dto, codigoMateria);
+                await _tutorService.CreateTutor(dto);
                 return Ok("Tutor creado exitosamente.");
             }
             catch (InvalidOperationException ex)
@@ -50,5 +50,25 @@ namespace TutoriasGratuitas.Controllers
                 return Conflict(ex.Message);
             }
         }
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateTutor(string id, TutorDto dto)
+        {
+            try
+            {
+                await _tutorService.UpdateTutor(id, dto);
+                return Ok("Tutor actualizado exitosamente.");
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteTutor(string id)
+        {
+                await _tutorService.DeleteTutor(id);
+                return Ok("Tutor eliminado exitosamente.");
+        }
+
     }
 }
