@@ -1,0 +1,56 @@
+info:
+  name: Delete
+  type: http
+  seq: 5
+
+http:
+  method: DELETE
+  url: "{{Local_Path}}/api/tutor/29ec7f20-7047-4367-96d4-94a1acd444e4"
+  auth: inherit
+
+runtime:
+  variables:
+    - name: Local_Path
+      value: http://localhost:5294
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ## Endpoint: Eliminar tutor
+
+  Este endpoint permite eliminar un tutor existente por su Id registrado en el sistema.
+
+  ### URL
+  ```http
+  DELETE /api/tutor/{id}
+  ```
+
+  ### Descripción
+  Elimina permanentemente el tutor identificado por su Id de la base de datos. Si el tutor tiene relaciones con otras entidades (como materias), se debe considerar la lógica de eliminación en cascada o restricciones de integridad referencial.
+
+  ### Cuerpo de la petición
+  Este endpoint no requiere un cuerpo de petición. El Id del tutor se pasa directamente en la URL.
+
+  ### Respuesta exitosa
+  Si la eliminación se realiza correctamente, el endpoint responde con:
+
+  ```http
+  200 OK
+
+
+
+  Tutor eliminado exitosamente.
+  ```
+
+
+  ### Respuestas de error
+  - `404 Not Found`: Si no se encuentra un tutor con el Id proporcionado.
+  - `409 Conflict`: Si el tutor no puede ser eliminado debido a restricciones de integridad referencial (ej. tiene dependencias activas).
+  - `500 Internal Server Error`: Si ocurre un error interno del servidor.
+
+  ### Resumen
+  Este endpoint se utiliza para remover un tutor del sistema de manera permanente, asegurando la limpieza de datos relacionados según las reglas de negocio definidas.

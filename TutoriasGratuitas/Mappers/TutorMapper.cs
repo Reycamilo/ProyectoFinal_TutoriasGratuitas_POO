@@ -36,7 +36,7 @@ namespace TutoriasGratuitas.Mappers
         public static TutorEntity ToTutorUpdateDto(TutorEntity tutor, TutorDto dto, string materiaId)
         {
             
-                tutor.Nombre = dto.Nombre;
+            tutor.Nombre = dto.Nombre;
             tutor.Apellido = dto.Apellido;
             tutor.FechaDeNacimiento = dto.FechaDeNacimiento;
             tutor.CorreoElectronico = dto.CorreoElectronico;

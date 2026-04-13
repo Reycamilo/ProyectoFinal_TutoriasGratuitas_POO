@@ -66,8 +66,14 @@ namespace TutoriasGratuitas.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteTutor(string id)
         {
+            try            {
                 await _tutorService.DeleteTutor(id);
                 return Ok("Tutor eliminado exitosamente.");
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
     }

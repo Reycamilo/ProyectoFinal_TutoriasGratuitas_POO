@@ -38,11 +38,11 @@ docs: |-
 
   ### URL
   ```http
-  POST /api/tutor/{codigoMateria}
+  POST /api/tutor/
   ```
 
   ### Descripción
-  Recibe los datos de un tutor en el cuerpo de la petición y el código de la materia en la URL.
+  Recibe los datos de un tutor en el cuerpo de la petición.
 
   Antes de crear el tutor, el sistema realiza dos validaciones:
   - Verifica que exista una materia con el código recibido.
@@ -50,8 +50,6 @@ docs: |-
 
   Si ambas validaciones se cumplen, el sistema crea el tutor y le asigna automáticamente el `MateriaId` correspondiente a la materia encontrada.
 
-  ### Parámetro en la URL
-  - `codigoMateria`: código de la materia que se desea asignar al tutor.
 
   ### Cuerpo de la petición
   Se debe enviar un objeto JSON con la siguiente estructura:
@@ -64,6 +62,7 @@ docs: |-
     "fechaDeNacimiento": "2000-05-15T00:00:00",
     "correoElectronico": "juan.perez@email.com",
     "genero": "Masculino"
+    "codigoMateria": "F100"
   }
   ```
 
@@ -74,10 +73,12 @@ docs: |-
   - `fechaDeNacimiento`: fecha de nacimiento del tutor.
   - `correoElectronico`: correo electrónico del tutor.
   - `genero`: género del tutor.
+  - `codigoMateria` (opcional): Id de la materia asociada al tutor.
+
 
   ### Ejemplo de solicitud
   ```http
-  POST /api/tutor/MAT101
+  POST /api/tutor
   ```
 
   ```json
@@ -88,6 +89,7 @@ docs: |-
     "fechaDeNacimiento": "2000-05-15T00:00:00",
     "correoElectronico": "juan.perez@email.com",
     "genero": "Masculino"
+    "codigoMateria": "F100"
   }
   ```
 
