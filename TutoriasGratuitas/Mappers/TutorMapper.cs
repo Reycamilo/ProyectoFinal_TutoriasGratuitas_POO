@@ -19,5 +19,19 @@ namespace TutoriasGratuitas.Mappers
                 MateriaId = materiaId,
             };
         }
+
+        public static TutorResponseDto ToTutorResponseDto(this TutorEntity entity)
+        {
+            return new TutorResponseDto
+            {
+                Dni = entity.Dni,
+                Nombre = entity.Nombre,
+                Apellido = entity.Apellido,
+                FechaDeNacimiento = entity.FechaDeNacimiento,
+                CorreoElectronico = entity.CorreoElectronico,
+                Genero = entity.Genero,
+                Materia = entity.Materia?.Nombre
+            };
+        }
     }
 }
