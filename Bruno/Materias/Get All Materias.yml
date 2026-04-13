@@ -1,0 +1,77 @@
+info:
+  name: Get All Materias
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{Local_Path}}/api/materia"
+  auth: inherit
+
+runtime:
+  variables:
+    - name: Local_Path
+      value: http://localhost:5294
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ## Endpoint: Obtener todas las materias
+
+  Este endpoint permite consultar todas las materias registradas en el sistema.
+
+  ### URL
+  ```http
+  GET /api/materia
+  ```
+
+  ### Descripción
+  Recupera la lista completa de materias almacenadas en la base de datos.
+
+  Es útil para mostrar las materias disponibles en una tabla, listado o selector dentro de la aplicación.
+
+  ### Cuerpo de la petición
+  Este endpoint no requiere cuerpo en la solicitud.
+
+  ### Respuesta exitosa
+  Si la consulta se realiza correctamente, el endpoint responde con:
+
+  ```http
+  200 OK
+  ```
+
+  ```json
+  [
+    {
+      "id": "1a2b3c4d",
+      "codigo": "MAT101",
+      "nombre": "Matematica Basica",
+      "area": "Ciencias",
+      "creditos": 4,
+      "tutores": []
+    },
+    {
+      "id": "5e6f7g8h",
+      "codigo": "ESP201",
+      "nombre": "Espanol General",
+      "area": "Humanidades",
+      "creditos": 3,
+      "tutores": []
+    }
+  ]
+  ```
+
+  ### Campos de la respuesta
+  - `id`: identificador único de la materia.
+  - `codigo`: código de la materia.
+  - `nombre`: nombre de la materia.
+  - `area`: área académica de la materia.
+  - `creditos`: cantidad de créditos.
+  - `tutores`: lista de tutores asociados a esa materia.
+
+  ### Resumen
+  Este endpoint se utiliza para obtener todas las materias registradas en el sistema y mostrarlas en la aplicación cuando sea necesario.

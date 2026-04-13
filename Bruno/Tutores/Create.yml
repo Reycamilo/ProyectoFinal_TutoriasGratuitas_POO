@@ -5,8 +5,24 @@ info:
 
 http:
   method: POST
-  url: ""
+  url: "{{Local_Path}}/api/tutor"
+  body:
+    type: json
+    data: |-
+      {
+        "Dni": "1234567891235",
+        "Nombre" : "Jossue",
+        "Apellido" : "Salguero",
+        "FechaDeNacimiento" : "2004-02-12",
+        "CorreoElectronico" : "salguero@gmail.com",
+        "Genero" : "M"
+      }
   auth: inherit
+
+runtime:
+  variables:
+    - name: Local_Path
+      value: http://localhost:5294
 
 settings:
   encodeUrl: true
