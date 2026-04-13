@@ -18,3 +18,62 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+
+docs: |-
+  ## Endpoint: Obtener todos los tutores
+
+  Este endpoint permite consultar todos los tutores registrados en el sistema.
+
+  ### URL
+  ```http
+  GET /api/tutor
+  ```
+
+  ### Descripción
+  Recupera la lista completa de tutores almacenados en la base de datos.
+
+  Además, cada tutor incluye la información de la materia asociada, lo que permite conocer qué materia imparte o domina cada tutor.
+
+  ### Cuerpo de la petición
+  Este endpoint no requiere cuerpo en la solicitud.
+
+  ### Respuesta exitosa
+  Si la consulta se realiza correctamente, el endpoint responde con:
+
+  ```http
+  200 OK
+  ```
+
+  ```json
+  [
+    {
+      "id": "a1b2c3d4",
+      "dni": "0801199901234",
+      "nombre": "Juan",
+      "apellido": "Perez",
+      "fechaDeNacimiento": "2000-05-15T00:00:00",
+      "correoElectronico": "juan.perez@email.com",
+      "genero": "Masculino",
+      "materia": {
+        "id": "m1n2o3p4",
+        "codigo": "MAT101",
+        "nombre": "Matematica Basica",
+        "area": "Ciencias",
+        "creditos": 4
+      }
+    }
+  ]
+  ```
+
+  ### Campos de la respuesta
+  - `id`: identificador único del tutor.
+  - `dni`: número de identidad del tutor.
+  - `nombre`: nombres del tutor.
+  - `apellido`: apellidos del tutor.
+  - `fechaDeNacimiento`: fecha de nacimiento del tutor.
+  - `correoElectronico`: correo electrónico del tutor.
+  - `genero`: género del tutor.
+  - `materia`: información de la materia asociada al tutor.
+
+  ### Resumen
+  Este endpoint se utiliza para obtener todos los tutores registrados en el sistema junto con la materia relacionada a cada uno.

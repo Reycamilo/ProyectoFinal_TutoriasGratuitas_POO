@@ -23,7 +23,7 @@ namespace TutoriasGratuitas.Services.MateriaService
         public async Task CreateMateria(MateriaDto dto)
         {
             bool existeMateria = await _context.Materias
-                .AnyAsync(m => m.Codigo == dto.Codigo);
+                .AnyAsync(p => p.Codigo == dto.Codigo);
 
             if (existeMateria)
             {
