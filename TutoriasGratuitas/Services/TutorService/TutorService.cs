@@ -15,7 +15,7 @@ namespace TutoriasGratuitas.Services.TutorService
         }
         public async Task<List<TutorEntity>> GetAllTutores()
         {
-            return await _context.Tutores.Include(t => t.Materia).ToListAsync();
+            return await _context.Tutores.ToListAsync();
         }
 
         public async Task CreateTutor(TutorDto dto, string codigoMateria)
