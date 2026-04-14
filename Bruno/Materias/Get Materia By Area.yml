@@ -1,0 +1,72 @@
+info:
+  name: Get Materia By Area
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: "{{Local_Path}}/api/materia/area/Area de Ciencias"
+  auth: inherit
+
+runtime:
+  variables:
+    - name: Local_Path
+      value: http://localhost:5294
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ## Endpoint: Obtener materias por área
+
+  Este endpoint permite consultar las materias que pertenecen a una área específica del sistema.
+
+  ### URL
+  ```http
+  GET /api/materia/area/{area}
+  ```
+
+  ### Descripción
+  Recupera las materias que corresponden al área indicada en la URL. Cada materia incluye información relevante y la lista de tutores asociados a esa materia.
+
+  ### Cuerpo de la petición
+  Este endpoint no requiere cuerpo. El área se pasa directamente en la URL.
+
+  ### Respuesta exitosa
+  Si la consulta se realiza correctamente, el endpoint responde con:
+
+  ```http
+  200 OK
+  ```
+
+  ```json
+  [
+    {
+      "codigo": "MAT101",
+      "nombre": "Matemáticas Básicas",
+      "area": "Ciencias",
+      "creditos": 4,
+      "tutores": [
+        "Kevin Maldonado",
+        "Ana López"
+      ]
+    }
+  ]
+  ```
+
+  ### Campos de la respuesta
+  - `codigo`: código identificador de la materia.
+  - `nombre`: nombre de la materia.
+  - `area`: área a la que pertenece la materia.
+  - `creditos`: cantidad de créditos de la materia.
+  - `tutores`: lista de nombres de tutores asociados a esa materia.
+
+  ### Respuestas de error
+  - `404 Not Found`: si no se encuentra ninguna materia para el área indicada.
+  - `500 Internal Server Error`: si ocurre un error interno del servidor.
+
+  ### Resumen
+  Este endpoint se utiliza para obtener todas las materias de una área específica, mostrando datos de cada materia y los tutores que la dictan o están asociados a ella.

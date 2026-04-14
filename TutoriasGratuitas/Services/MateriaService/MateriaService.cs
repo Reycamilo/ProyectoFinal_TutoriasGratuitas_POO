@@ -78,5 +78,19 @@ namespace TutoriasGratuitas.Services.MateriaService
 
             await _context.SaveChangesAsync();
         }
+        public async Task<List<MateriaResponseDto>> GetMateriasByArea(string Area)
+        {
+            List<MateriaEntity> materias = await _context.Materias
+                .Include(p => p.Tutores)
+                .Where(p => p.Area == Area)
+                .ToListAsync();
+            if (materias.Count == 0)
+            {
+                throw new KeyNotFoundException("No existe una materia con ese Area.");
+            }
+            return materias
+                .Select(p => p.ToMateriaResponseDto())
+                .ToList();
+        }
     }
 }

@@ -67,5 +67,23 @@ namespace TutoriasGratuitas.Controllers
                 return Conflict(ex.Message);
             }
         }
+        [HttpGet("area/{area}")]
+        public async Task<ActionResult<List<MateriaResponseDto>>> GetMateriasByArea(string area)
+        {
+            try
+            {
+                var materias = await _materiaService.GetMateriasByArea(area);
+                return Ok(materias);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(ex.Message);
+            }
+
+        }
     }
 }
