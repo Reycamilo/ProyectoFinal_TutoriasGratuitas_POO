@@ -10,9 +10,9 @@ http:
     type: json
     data: |-
       {
-        "Codigo": "MM111",
-        "Nombre" : "Geometria",
-        "Area" : "Area de Matematicas",
+        "Codigo": "ISC-103",
+        "Nombre" : "Programación Orientada a Objetos",
+        "Area" : "Ingenieria en Sistemas",
         "Creditos" : 5
       }
   auth: inherit

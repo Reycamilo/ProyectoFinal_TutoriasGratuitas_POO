@@ -10,5 +10,6 @@ namespace TutoriasGratuitas.Services.TutorService
         Task CreateTutor(TutorDto dto);
         Task UpdateTutor(string id, TutorDto dto);
         Task DeleteTutor(string id);
+        Task<List<TutorResponseDto>> GetTutoresByMateriaId(string MateriaId);
     }
 }

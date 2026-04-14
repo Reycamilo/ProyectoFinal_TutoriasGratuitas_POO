@@ -75,6 +75,19 @@ namespace TutoriasGratuitas.Controllers
                 return NotFound(ex.Message);
             }
         }
+        [HttpGet("materias/{MateriaId}")]
+        public async Task<ActionResult<List<TutorResponseDto>>> GetTutoresByMateriaId(string MateriaId)
+        {
+            try
+            {
+                var tutores = await _tutorService.GetTutoresByMateriaId(MateriaId);
+                return Ok(tutores);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
 
     }
 }
