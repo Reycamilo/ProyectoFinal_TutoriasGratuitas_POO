@@ -116,6 +116,22 @@ namespace TutoriasGratuitas.Services.TutorService
 
             await _context.SaveChangesAsync();
         }
+        public async Task<List<TutorResponseDto>> GetTutoresByMateriaId(string MateriaId)
+        {
+            List<TutorEntity> tutores = await _context.Tutores
+                .Include(t => t.Materia)
+                .Where(t => t.Materia.Id == MateriaId)
+                .ToListAsync();
+
+            if (tutores.Count == 0)
+            {
+                throw new InvalidOperationException("No existen tutores para esa materia.");
+            }
+
+            return tutores
+                .Select(t => t.ToTutorResponseDto())
+                .ToList();
+        }
 
 
     }

@@ -5,7 +5,7 @@ info:
 
 http:
   method: DELETE
-  url: "{{Local_Path}}/api/tutor/29ec7f20-7047-4367-96d4-94a1acd444e4"
+  url: "{{Local_Path}}/api/tutor/108eaa22-4f72-4093-bcd2-4ac6c86eb07a"
   auth: inherit
 
 runtime:

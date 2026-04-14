@@ -1,0 +1,73 @@
+info:
+  name: GetTutorByMateriaId
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: "{{Local_Path}}/api/tutor/materias/da182a45-8f40-49c7-a01d-6dd835a62de4"
+  auth: inherit
+
+runtime:
+  variables:
+    - name: Local_Path
+      value: http://localhost:5294
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ## Endpoint: Obtener tutores por materia
+
+  Este endpoint permite consultar los tutores asociados a una materia específica mediante el Id de la materia.
+
+  ### URL
+  ```http
+  GET /api/tutor/materias/{MateriaId}
+  ```
+
+  ### Descripción
+  Recupera los tutores que pertenecen a la materia identificada por `MateriaId`. Cada tutor incluye la información de la materia asociada para saber qué materia imparte o domina.
+
+  ### Cuerpo de la petición
+  Este endpoint no requiere cuerpo. El Id de la materia se pasa en la URL.
+
+  ### Respuesta exitosa
+  Si la consulta se realiza correctamente, el endpoint responde con:
+
+  ```http
+  200 OK
+  ```
+
+  ```json
+  [
+    {
+      "dni": "1234567891232",
+      "nombre": "Kevin",
+      "apellido": "Maldonado",
+      "fechaDeNacimiento": "2004-02-12T00:00:00",
+      "correoElectronico": "salguero@gmail.com",
+      "genero": "M",
+      "materia": "Fisica 1"
+    }
+  ]
+  ```
+
+  ### Campos de la respuesta
+  - `dni`: número de identidad del tutor.
+  - `nombre`: nombres del tutor.
+  - `apellido`: apellidos del tutor.
+  - `fechaDeNacimiento`: fecha de nacimiento del tutor.
+  - `correoElectronico`: correo electrónico del tutor.
+  - `genero`: género del tutor.
+  - `materia`: información de la materia asociada al tutor.
+
+  ### Respuestas de error
+  - `404 Not Found`: Si no existen tutores para la materia indicada.
+  - `500 Internal Server Error`: Si ocurre un error interno del servidor.
+
+  ### Resumen
+  Este endpoint se utiliza para obtener todos los tutores relacionados con una materia específica, devolviendo una lista de tutores junto con la materia asociada.
