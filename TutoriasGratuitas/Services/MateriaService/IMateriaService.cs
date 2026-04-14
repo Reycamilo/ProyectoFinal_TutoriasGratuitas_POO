@@ -8,5 +8,6 @@ namespace TutoriasGratuitas.Services.MateriaService
         Task<List<MateriaResponseDto>> GetAllMaterias();
         Task<MateriaResponseDto> GetMateriaById(string id);
         Task CreateMateria(MateriaDto dto);
+        Task UpdateMateria(string id, MateriaDto dto);
     }
 }

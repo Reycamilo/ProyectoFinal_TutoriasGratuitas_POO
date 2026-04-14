@@ -10,12 +10,12 @@ http:
     type: json
     data: |-
       {
-        "Dni": "1234567891267",
-        "Nombre": "Camilo",
-        "Apellido": "Maldonado",
-        "FechaDeNacimiento": "2004-02-12",
-        "CorreoElectronico": "salguero@gmail.com",
-        "Genero": "M",
+        "Dni": "1234567891289",
+        "Nombre": "Maria",
+        "Apellido": "Plano",
+        "FechaDeNacimiento": "1999-02-12",
+        "CorreoElectronico": "maria@gmail.com",
+        "Genero": "F",
         "CodigoMateria": "F100"
       }
   auth: inherit

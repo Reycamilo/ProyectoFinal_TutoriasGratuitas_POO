@@ -49,5 +49,23 @@ namespace TutoriasGratuitas.Controllers
                 return Conflict(ex.Message);
             }
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateMateria(string id, MateriaDto dto)
+        {
+            try
+            {
+                await _materiaService.UpdateMateria(id, dto);
+                return Ok("Materia actualizada exitosamente.");
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(ex.Message);
+            }
+        }
     }
 }

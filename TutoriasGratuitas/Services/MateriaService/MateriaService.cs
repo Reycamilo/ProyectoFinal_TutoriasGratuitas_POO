@@ -56,5 +56,28 @@ namespace TutoriasGratuitas.Services.MateriaService
             await _context.SaveChangesAsync();
         }
 
+        public async Task UpdateMateria(string id, MateriaDto dto)
+        {
+            MateriaEntity materia = await _context.Materias
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (materia is null)
+            {
+                throw new KeyNotFoundException("No existe una materia con ese Id.");
+            }
+
+            bool existeOtraMateriaConEseCodigo = await _context.Materias
+                .AnyAsync(m => m.Codigo == dto.Codigo && m.Id != id);
+
+            if (existeOtraMateriaConEseCodigo)
+            {
+                throw new InvalidOperationException("Ya existe otra materia con ese codigo.");
+            }
+
+            materia = MateriaMapper.ToUpdateMateriaEntity(materia, dto);
+
+            await _context.SaveChangesAsync();
+        }
+
     }
 }
