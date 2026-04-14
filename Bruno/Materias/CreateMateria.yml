@@ -10,8 +10,8 @@ http:
     type: json
     data: |-
       {
-        "Codigo": "MM110",
-        "Nombre" : "Matematicas",
+        "Codigo": "MM111",
+        "Nombre" : "Geometria",
         "Area" : "Area de Matematicas",
         "Creditos" : 5
       }

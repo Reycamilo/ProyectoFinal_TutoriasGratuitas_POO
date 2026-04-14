@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: "{{Local_Path}}/api/tutor/29f942a7-1993-42d9-aae3-a83d3f92a86b"
+  url: "{{Local_Path}}/api/tutor/bd607d7f-7930-4b8c-b2ab-2392af75f4fe0 .1"
   auth: inherit
 
 runtime:

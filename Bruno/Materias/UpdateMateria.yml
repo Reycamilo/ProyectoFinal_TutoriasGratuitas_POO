@@ -1,0 +1,87 @@
+info:
+  name: UpdateMateria
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{Local_Path}}/api/materia/f71bf52a-bef6-4c09-a3d6-2bd75514a068"
+  body:
+    type: json
+    data: |-
+      {
+        "Codigo": "FS-100",
+        "Nombre" : "Fisica 1",
+        "Area" : "Area de Ciencias",
+        "Creditos" : 5
+      }
+  auth: inherit
+
+runtime:
+  variables:
+    - name: Local_Path
+      value: http://localhost:5294
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  
+  ## Endpoint: Obtener una materia por Id
+
+  Este endpoint permite buscar una materia específica usando su identificador único.
+
+  ### URL
+  ```http
+  GET /api/materia/{id}
+  ```
+
+  ### Descripción
+  Busca una materia en la base de datos a partir de su `Id`.
+
+  La respuesta devuelve la información de la materia usando el mismo DTO de salida del endpoint de listar todas las materias. Esto significa que también incluye solamente los nombres de los tutores asociados.
+
+  ### Parámetro en la URL
+  - `id`: identificador único de la materia.
+
+  ### Ejemplo de solicitud
+  ```http
+  GET /api/materia/8f3d2a1b-45c7-4d9f-a123-98f23b4c5678
+  ```
+
+  ### Respuesta exitosa
+  Si la materia existe, el endpoint responde con:
+
+  ```http
+  200 OK
+  ```
+
+  ```json
+  {
+    "codigo": "MAT101",
+    "nombre": "Matematica Basica",
+    "area": "Ciencias",
+    "creditos": 4,
+    "tutores": [
+      "Juan",
+      "Maria"
+    ]
+  }
+  ```
+
+  ### Respuesta cuando la materia no existe
+  Si no existe una materia con el `Id` enviado, el endpoint responde con:
+
+  ```http
+  404 Not Found
+  ```
+
+  ```json
+  "No existe una materia con ese Id."
+  ```
+
+  ### Resumen
+  Este endpoint se utiliza para consultar una materia específica por su identificador, mostrando sus datos principales y los nombres de los tutores relacionados.

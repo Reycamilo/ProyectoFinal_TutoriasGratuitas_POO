@@ -30,5 +30,16 @@ namespace TutoriasGratuitas.Mappers
                     .ToList() ?? new List<string>()
             };
         }
+
+        public static MateriaEntity ToUpdateMateriaEntity(MateriaEntity materia, MateriaDto dto)
+        {
+            materia.Codigo = dto.Codigo;
+            materia.Nombre = dto.Nombre;
+            materia.Area = dto.Area;
+            materia.Creditos = dto.Creditos;
+
+            return materia;
+        }
     }
+
 }
