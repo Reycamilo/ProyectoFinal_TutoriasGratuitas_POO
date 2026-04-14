@@ -1,0 +1,71 @@
+info:
+  name: GetTutorById
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: "{{Local_Path}}/api/tutor/bd607d7f-7930-4b8c-b2ab-2392af75f4fe0 .1"
+  auth: inherit
+
+runtime:
+  variables:
+    - name: Local_Path
+      value: http://localhost:5294
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ## Endpoint: Obtener tutor por Id
+
+  Este endpoint permite consultar a un tutor por su Id registrado en el sistema.
+
+  ### URL
+  ```http
+  GET /api/tutor/{id}
+  ```
+
+  ### Descripción
+  Recupera el tutor consultado por su Id almacenado en la base de datos.
+
+  Además, el tutor incluye la información de la materia asociada, lo que permite conocer qué materia imparte o domina el tutor.
+
+  ### Cuerpo de la petición
+  Este EndPoint necesita el Id.
+
+  ### Respuesta exitosa
+  Si la consulta se realiza correctamente, el endpoint responde con:
+
+  ```http
+  200 OK
+  ```
+
+  ```json
+  [
+    {
+      "dni": "1234567891232",
+      "nombre": "Kevin",
+      "apellido": "Maldonado",
+      "fechaDeNacimiento": "2004-02-12T00:00:00",
+      "correoElectronico": "salguero@gmail.com",
+      "genero": "M",
+      "materia": "Fisica 1"
+    }
+  ]
+  ```
+
+  ### Campos de la respuesta
+  - `dni`: número de identidad del tutor.
+  - `nombre`: nombres del tutor.
+  - `apellido`: apellidos del tutor.
+  - `fechaDeNacimiento`: fecha de nacimiento del tutor.
+  - `correoElectronico`: correo electrónico del tutor.
+  - `genero`: género del tutor.
+  - `materia`: información de la materia asociada al tutor.
+
+  ### Resumen
+  Este endpoint se utiliza para obtener un tutor por Id registrado en el sistema junto con la materia relacionada a cada uno.

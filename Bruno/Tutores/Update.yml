@@ -1,0 +1,84 @@
+info:
+  name: Update
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{Local_Path}}/api/tutor/545d3ae7-d11e-40df-810b-e2a6fd01d110"
+  body:
+    type: json
+    data: |-
+      {
+        "Dni": "1234567891299",
+        "Nombre": "Maria",
+        "Apellido": "Magdalena",
+        "FechaDeNacimiento": "2007-02-12",
+        "CorreoElectronico": "maria@gmail.com",
+        "Genero": "F",
+        "CodigoMateria": "F100"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ## Endpoint: Actualizar tutor
+
+  Este endpoint permite actualizar la información de un tutor existente por su Id registrado en el sistema.
+
+  ### URL
+  ```http
+  PUT /api/tutor/{id}
+  ```
+
+  ### Descripción
+  Actualiza los datos de un tutor específico identificado por su Id. Los campos que no se incluyan en la petición permanecerán sin cambios. Además, se puede asociar o cambiar la materia relacionada al tutor.
+
+  ### Cuerpo de la petición
+  El cuerpo debe ser un objeto JSON con los campos opcionales a actualizar. El Id se pasa en la URL.
+
+  ```json
+  {
+    "dni": "1234567891232",
+    "nombre": "Kevin",
+    "apellido": "Maldonado",
+    "fechaDeNacimiento": "2004-02-12T00:00:00",
+    "correoElectronico": "salguero@gmail.com",
+    "genero": "M",
+    "codigoMateria": "F100"
+  }
+  ```
+
+  ### Campos del cuerpo de la petición
+  - `dni`: número de identidad del tutor.
+  - `nombre`: nombres del tutor.
+  - `apellido`: apellidos del tutor.
+  - `fechaDeNacimiento` (opcional): fecha de nacimiento del tutor en formato ISO 8601.
+  - `correoElectronico`: correo electrónico del tutor.
+  - `genero` (opcional): género del tutor (ej. "M", "F").
+  - `codigoMateria` (opcional): Id de la materia asociada al tutor.
+
+  ### Respuesta exitosa
+  Si la actualización se realiza correctamente, el endpoint responde con:
+
+  ```http
+  200 OK
+
+
+
+  Tutor actualizado exitosamente.
+  ```
+
+
+  ### Respuestas de error
+  - `400 Bad Request`: Si el cuerpo de la petición es inválido o faltan campos requeridos.
+  - `404 Not Found`: Si no se encuentra un tutor con el Id proporcionado.
+  - `500 Internal Server Error`: Si ocurre un error interno del servidor.
+
+  ### Resumen
+  Este endpoint se utiliza para modificar la información de un tutor existente en el sistema, permitiendo actualizaciones parciales y manteniendo la relación con la materia asociada.

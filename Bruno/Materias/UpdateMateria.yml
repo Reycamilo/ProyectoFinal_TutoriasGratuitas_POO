@@ -1,0 +1,119 @@
+info:
+  name: UpdateMateria
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{Local_Path}}/api/materia/f71bf52a-bef6-4c09-a3d6-2bd75514a068"
+  body:
+    type: json
+    data: |-
+      {
+        "Codigo": "FS-100",
+        "Nombre" : "Fisica 1",
+        "Area" : "Area de Ciencias",
+        "Creditos" : 5
+      }
+  auth: inherit
+
+runtime:
+  variables:
+    - name: Local_Path
+      value: http://localhost:5294
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ## Endpoint: Editar una materia
+
+  Este endpoint permite actualizar la información de una materia existente en el sistema.
+
+  ### URL
+  ```http
+  PUT /api/materia/{id}
+  ```
+
+  ### Descripción
+  Busca una materia por su `Id` y actualiza sus datos con la información enviada en el cuerpo de la petición.
+
+  Antes de guardar los cambios, el sistema realiza dos validaciones:
+  - Verifica que exista una materia con el `Id` recibido.
+  - Verifica que no exista otra materia con el mismo código que se desea asignar.
+
+  Si ambas validaciones se cumplen, la materia se actualiza correctamente.
+
+  ### Parámetro en la URL
+  - `id`: identificador único de la materia que se desea editar.
+
+  ### Cuerpo de la petición
+  Se debe enviar un objeto JSON con la siguiente estructura:
+
+  ```json
+  {
+    "codigo": "MAT101",
+    "nombre": "Matematica Intermedia",
+    "area": "Ciencias",
+    "creditos": 4
+  }
+  ```
+
+  ### Campos
+  - `codigo`: código de la materia.
+  - `nombre`: nombre actualizado de la materia.
+  - `area`: área académica de la materia.
+  - `creditos`: cantidad de créditos de la materia.
+
+  ### Ejemplo de solicitud
+  ```http
+  PUT /api/materia/8f3d2a1b-45c7-4d9f-a123-98f23b4c5678
+  ```
+
+  ```json
+  {
+    "codigo": "MAT101",
+    "nombre": "Matematica Intermedia",
+    "area": "Ciencias",
+    "creditos": 4
+  }
+  ```
+
+  ### Respuesta exitosa
+  Si la materia se actualiza correctamente, el endpoint responde con:
+
+  ```http
+  200 OK
+  ```
+
+  ```json
+  "Materia actualizada exitosamente."
+  ```
+
+  ### Respuesta cuando la materia no existe
+  Si no existe una materia con el `Id` enviado, el endpoint responde con:
+
+  ```http
+  404 Not Found
+  ```
+
+  ```json
+  "No existe una materia con ese Id."
+  ```
+
+  ### Respuesta cuando el código ya está en uso por otra materia
+  Si ya existe otra materia registrada con el mismo código, el endpoint responde con:
+
+  ```http
+  409 Conflict
+  ```
+
+  ```json
+  "Ya existe otra materia con ese codigo."
+  ```
+
+  ### Resumen
+  Este endpoint se utiliza para modificar los datos de una materia ya registrada en el sistema, asegurando que el `Id` exista y que el código no esté repetido en otra materia.

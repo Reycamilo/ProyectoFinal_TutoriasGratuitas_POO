@@ -6,7 +6,7 @@ namespace TutoriasGratuitas.Dtos.Materias
     {
         [Display(Name = "Codigo")]
         [Required(ErrorMessage = "El {0} es requerido")]
-        [StringLength(20, ErrorMessage = "El {0} debera tener un minimo de {2} y maximo de {1} caracteres.", MinimumLength = 5)]
+        [StringLength(10, ErrorMessage = "El {0} debera tener un minimo de {2} y maximo de {1} caracteres.", MinimumLength = 1)]
         public string Codigo { get; set; }
 
         [Display(Name = "Nombre")]

@@ -1,0 +1,87 @@
+info:
+  name: CreateMateria
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{Local_Path}}/api/materia"
+  body:
+    type: json
+    data: |-
+      {
+        "Codigo": "ISC-103",
+        "Nombre" : "Programación Orientada a Objetos",
+        "Area" : "Ingenieria en Sistemas",
+        "Creditos" : 5
+      }
+  auth: inherit
+
+runtime:
+  variables:
+    - name: Local_Path
+      value: http://localhost:5294
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ## Endpoint: Crear una materia
+
+  Este endpoint permite registrar una nueva materia en el sistema.
+
+  ### URL
+  ```http
+  POST /api/materia
+  ```
+
+  ### Descripción
+  Recibe los datos de una materia y la guarda en la base de datos.
+
+  Antes de crearla, el sistema valida que no exista otra materia con el mismo código. Si ya existe una materia con ese código, no se crea el registro duplicado.
+
+  ### Cuerpo de la petición
+  Se debe enviar un objeto JSON con la siguiente estructura:
+
+  ```json
+  {
+    "codigo": "MAT101",
+    "nombre": "Matematica Basica",
+    "area": "Ciencias",
+    "creditos": 4
+  }
+  ```
+
+  ### Campos
+  - `codigo`: código único de la materia.
+  - `nombre`: nombre de la materia.
+  - `area`: área académica a la que pertenece.
+  - `creditos`: cantidad de créditos de la materia.
+
+  ### Respuesta exitosa
+  Si la materia se crea correctamente, el endpoint responde con:
+
+  ```http
+  200 OK
+  ```
+
+  ```json
+  "Materia creada exitosamente."
+  ```
+
+  ### Respuesta cuando ya existe una materia con el mismo código
+  Si el código enviado ya está registrado en la base de datos, el endpoint responde con:
+
+  ```http
+  409 Conflict
+  ```
+
+  ```json
+  "Ya existe una materia con ese codigo."
+  ```
+
+  ### Resumen
+  Este endpoint se utiliza para agregar nuevas materias al sistema, asegurando que no se repitan códigos de materia ya existentes.

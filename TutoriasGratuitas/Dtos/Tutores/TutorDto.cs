@@ -21,8 +21,9 @@ namespace TutoriasGratuitas.Dtos.Tutores
 
         [Display(Name = "Correo Electronico")]
         [Required(ErrorMessage = "El {0} es requerido.")]
-        [StringLength(40, ErrorMessage = "El {0} debera tener un mínimo de {2} y máximo de {1} caracteres.", MinimumLength = 5)]
+        [EmailAddress(ErrorMessage = "Formato de Correo Invalido.")]
         public string CorreoElectronico { get; set; }
         public string Genero { get; set; }
+        public string CodigoMateria { get; set; }
     }
 }
